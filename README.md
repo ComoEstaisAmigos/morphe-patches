@@ -15,8 +15,7 @@ OBB when that column says required.
 | Contract Killer: Zombies (NR)       | `com.glu.android.zombsniper` | required | `armeabi`, `armeabi-v7a` (⚠️) | `.xapk`, `.apks`, `.apkm` |
 | Contract Killer: Zombies 2: Origins | `com.glu.ckzombies2`         | required | `armeabi-v7a` (⚠️) | `.xapk`, `.apks`, `.apkm` |
 
-> [!WARNING]
-> 32-bit only. Does not install on 64-bit-only devices.
+>⚠️: 32-bit only. Does not install on 64-bit-only devices.
 
 When OBB is required, the file must hold the APK and the OBB together. An APK alone is not
 enough. Package, version, and signature are read from that APK. Patches that edit native code
