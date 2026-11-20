@@ -2,11 +2,13 @@ package app.ckzorigins.patches
 
 import app.ckzorigins.patches.compat.bundleObbPatch
 import app.ckzorigins.patches.compat.modernAndroidPatch
+import app.ckzorigins.patches.compat.unusedPermissionsPatch
 import app.ckzorigins.patches.intro.playIntroOncePatch
 import app.ckzorigins.patches.mono.disableTelemetryPatch
 import app.ckzorigins.patches.mono.gluBackupPatch
 import app.ckzorigins.patches.mono.unlimitedAmmoPatch
 import app.ckzorigins.patches.mono.unlimitedCurrencyPatch
+import app.ckzombies.patches.compat.unusedPermissionsPatch as zombiesUnusedPermissionsPatch
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -19,6 +21,7 @@ private val PATCHES = listOf(
     disableTelemetryPatch,
     modernAndroidPatch,
     playIntroOncePatch,
+    unusedPermissionsPatch,
 )
 
 class PatchListTest {
@@ -31,6 +34,7 @@ class PatchListTest {
                 "Disable telemetry" to true,
                 "Modern Android compatibility" to true,
                 "Play intro once" to true,
+                "Remove unused permissions" to true,
             ),
             PATCHES.associate { it.name!! to it.default },
         )
@@ -90,6 +94,8 @@ class PatchListTest {
             "Plays the intro video on the first launch after installing, and skips it after that.",
             playIntroOncePatch.description,
         )
+        assertEquals(zombiesUnusedPermissionsPatch.name, unusedPermissionsPatch.name)
+        assertEquals(zombiesUnusedPermissionsPatch.description, unusedPermissionsPatch.description)
         val telemetry = disableTelemetryPatch.description!!
         assertTrue("Flurry" in telemetry, disableTelemetryPatch.name)
         assertTrue("Tapjoy" in telemetry, disableTelemetryPatch.name)
