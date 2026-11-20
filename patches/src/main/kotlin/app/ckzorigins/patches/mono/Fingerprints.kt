@@ -83,23 +83,6 @@ internal object GWalletOutOfGameFingerprint : Fingerprint(
     ),
 )
 
-internal const val DOWNLOADER_ACTIVITY =
-    "Lcom/google/android/vending/expansion/downloader_impl/DownloaderActivity;"
-
-internal object ExpansionCheckPropertiesFingerprint : Fingerprint(
-    definingClass = DOWNLOADER_ACTIVITY,
-    name = "checkProperties",
-    returnType = "V",
-    parameters = listOf(),
-)
-
-internal object ExpansionCheckUpgradeFingerprint : Fingerprint(
-    definingClass = DOWNLOADER_ACTIVITY,
-    name = "checkUpgrade",
-    returnType = "V",
-    parameters = listOf(),
-)
-
 internal const val NOTIFICATION_RECEIVER = "Lcom/glu/plugins/NotificationReceiver;"
 
 internal object NotificationReadFromS3Fingerprint : Fingerprint(
