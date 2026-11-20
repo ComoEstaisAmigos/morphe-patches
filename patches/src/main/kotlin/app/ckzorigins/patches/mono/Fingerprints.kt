@@ -58,6 +58,34 @@ internal object ChartBoostGluInitFingerprint : Fingerprint(
     parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;"),
 )
 
+internal object FacebookGluInitFingerprint : Fingerprint(
+    definingClass = "Lcom/glu/plugins/FacebookGlu;",
+    name = "Init",
+    returnType = "V",
+    parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;"),
+)
+
+internal object GluGoogleAnalyticsStartSessionFingerprint : Fingerprint(
+    definingClass = "Lcom/glu/plugins/GluGoogleAnalytics;",
+    name = "StartSession",
+    returnType = "V",
+    parameters = listOf("Ljava/lang/String;"),
+)
+
+internal object KontagentGluStartSessionFingerprint : Fingerprint(
+    definingClass = "Lcom/glu/plugins/KontagentGlu;",
+    name = "StartSession",
+    returnType = "V",
+    parameters = listOf("Ljava/lang/String;"),
+)
+
+internal object AmazonGluInitFingerprint : Fingerprint(
+    definingClass = "Lcom/glu/plugins/AmazonGlu;",
+    name = "Init",
+    returnType = "V",
+    parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;"),
+)
+
 internal object GWalletInitialiseFingerprint : Fingerprint(
     definingClass = "Lcom/glu/platform/gwallet/GWallet;",
     name = "onInitialise",
