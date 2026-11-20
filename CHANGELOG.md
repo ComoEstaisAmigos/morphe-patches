@@ -1,3 +1,9 @@
+## [1.1.0-dev.6](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.5...v1.1.0-dev.6) (2026-11-20)
+
+### ✨ New Features
+
+* **CKZ Origins - Disable telemetry:** Empty leftover SDK class bodies ([6decced](https://github.com/ComoEstaisAmigos/morphe-patches/commit/6decced7669cc974e1c3353d54e3c74e8c55bd7b))
+
 ## [1.1.0-dev.5](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.4...v1.1.0-dev.5) (2026-11-20)
 
 ### ✨ New Features
