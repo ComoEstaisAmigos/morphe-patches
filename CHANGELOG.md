@@ -1,3 +1,9 @@
+## [1.1.0-dev.1](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.0.0...v1.1.0-dev.1) (2026-11-20)
+
+### ✨ New Features
+
+* **CK Zombies:** Add `Disable friendly fire` patch ([132dbbf](https://github.com/ComoEstaisAmigos/morphe-patches/commit/132dbbf7d91774f68cbe3a6868f5ef54c69587ef))
+
 ## 1.0.0 (2026-11-16)
 
 ### ✨ New Features
