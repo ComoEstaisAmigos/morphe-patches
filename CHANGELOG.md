@@ -1,3 +1,9 @@
+## [1.1.0-dev.3](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.2...v1.1.0-dev.3) (2026-11-20)
+
+### ✨ New Features
+
+* **CKZ Origins:** Add `Remove unused permissions` patch ([4c02ad8](https://github.com/ComoEstaisAmigos/morphe-patches/commit/4c02ad870e76a3bc540c1d90afcdf494edd54d4a))
+
 ## [1.1.0-dev.2](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.1...v1.1.0-dev.2) (2026-11-20)
 
 ### ✨ New Features
