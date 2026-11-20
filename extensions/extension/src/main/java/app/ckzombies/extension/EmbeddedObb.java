@@ -8,17 +8,24 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * Treats the OBB packed in the APK as the game's GPK.
+ * Treats the OBB packed in the APK as the file Glu's engine opens for SPECIAL_RES.
  *
- * Glu's engine opens the OBB as a file and reads each SPECIAL_RES slice at event 100/102.
- * When the OBB sits in assets/ the "file" is the APK, so those starts have to land on the
- * STORED asset's FGIB payload, not on the zip PK header. path() records that base from the
- * APK's zip directory (openFd is only a fallback), findEmbedded() points GPK_FILENAME at
- * the APK, and adjustEvent / adjustOffset add the base to events 100 and 101 and to the
- * movie player's offset.
+ * Glu calls that file a GPK, "Glu package": a CBigFile_v2 (FGIB) blob, not an Android
+ * expansion. {@code GluDownloadResMgr.findGPKFile} / {@code findGPKFileInDir} look for it
+ * by that name, then stash the path in {@code GPK_FILENAME} and skip unpacking with
+ * {@code DO_NOT_UNPACK_GPK}. The on-disk extension is not part of the format. Play ships
+ * the same bytes as {@code .obb}; a loose copy can be {@code .gpk}. Native FileMgr never
+ * checks the suffix, only the path Java hands it.
+ *
+ * When that file sits in {@code assets/} the "file" is the APK, so event 100/102 starts
+ * have to land on the STORED asset's FGIB payload, not on the zip PK header. {@link #path()}
+ * records that base from the APK's zip directory ({@code openFd} is only a fallback),
+ * {@link #findEmbedded()} points {@code GPK_FILENAME} at the APK, and {@link #adjustEvent}
+ * / {@link #adjustOffset} add the base to events 100 and 101 and to the movie player's
+ * offset.
  */
 @SuppressWarnings("unused")
-public final class EmbeddedGpk {
+public final class EmbeddedObb {
 
     public static final String ASSET_NAME = "main.310.com.glu.android.zombsniper.obb";
     static final String ASSET_ENTRY = "assets/" + ASSET_NAME;
@@ -30,7 +37,7 @@ public final class EmbeddedGpk {
     static int base;
     static boolean missing;
 
-    private EmbeddedGpk() {
+    private EmbeddedObb() {
     }
 
     /** APK path when the packed OBB is present; null after a failed lookup. */
@@ -76,9 +83,10 @@ public final class EmbeddedGpk {
     }
 
     /**
-     * The APK as the GPK file, after the same download-screen side effects Glu's own packed
-     * build ran: dummy file.big, no leftover partial downloads. Returns null when the asset
-     * is missing, so findGPKFile falls through to the OBB folder.
+     * The APK as the file {@code findGPKFile} should return, after the same download-screen
+     * side effects Glu's own packed build ran: dummy file.big, no leftover partial downloads.
+     * Returns null when the asset is missing, so {@code findGPKFile} falls through to the
+     * OBB folder.
      */
     public static File findEmbedded() {
         String resolved = path();
@@ -87,6 +95,7 @@ public final class EmbeddedGpk {
         }
         File apk = new File(resolved);
         try {
+            // Glu's name for this blob. The bytes are the Play OBB; the field is still GPK.
             setStatic(RESDL + "GluDownloadResMgr", "GPK_FILENAME", resolved);
             setStatic(GAMELET, "DO_NOT_UNPACK_GPK", Boolean.TRUE);
             String dir = (String) call(RESDL + "GluUtil", "getResourceSDDirFilename");
