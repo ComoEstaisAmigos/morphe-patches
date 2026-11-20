@@ -1,3 +1,9 @@
+## [1.1.0-dev.4](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.3...v1.1.0-dev.4) (2026-11-20)
+
+### ✨ New Features
+
+* **CK Zombies - Stop requests to dead servers:** Empty leftover ad SDK class bodies ([de98f01](https://github.com/ComoEstaisAmigos/morphe-patches/commit/de98f01c94a4e73ba1b854570ce6391feb223adc))
+
 ## [1.1.0-dev.3](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.2...v1.1.0-dev.3) (2026-11-20)
 
 ### ✨ New Features
