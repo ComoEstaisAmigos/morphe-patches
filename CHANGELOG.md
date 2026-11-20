@@ -1,3 +1,9 @@
+## [1.1.0-dev.5](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.4...v1.1.0-dev.5) (2026-11-20)
+
+### ✨ New Features
+
+* **CKZ Origins - Unlimited ammo & Unlimited currency:** Disable the shop ammo refill popup ([f4a3463](https://github.com/ComoEstaisAmigos/morphe-patches/commit/f4a3463094c4196553f2920786a751e8afc9bf7f))
+
 ## [1.1.0-dev.4](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.3...v1.1.0-dev.4) (2026-11-20)
 
 ### ✨ New Features
