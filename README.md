@@ -26,7 +26,7 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.1.0-dev.2](https://github.com/ComoEstaisAmigos/morphe-patches/releases/tag/v1.1.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;15 patches total
+> **[v1.1.0-dev.3](https://github.com/ComoEstaisAmigos/morphe-patches/releases/tag/v1.1.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;16 patches total
 <details open>
 <summary>📦 CK Zombies&nbsp;&nbsp;•&nbsp;&nbsp;10 patches</summary>
 <br>
@@ -52,7 +52,7 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 </details>
 
 <details open>
-<summary>📦 CKZ Origins&nbsp;&nbsp;•&nbsp;&nbsp;5 patches</summary>
+<summary>📦 CKZ Origins&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -65,6 +65,7 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 | Disable telemetry | Turns off Flurry, Tune, Tapjoy, PlayHaven, Chartboost, Glu wallet, NTP, and the S3 content check. |  |
 | Modern Android compatibility | Fixes the crash at launch on current Android and targets API 25 so that Android 14 and later install the game normally. |  |
 | Play intro once | Plays the intro video on the first launch after installing, and skips it after that. |  |
+| Remove unused permissions | Removes permissions the game no longer needs, such as phone and accounts, along with the dead services that needed them. |  |
 | Unlimited ammo | Ammo never decreases, and reloading still works. |  |
 | Unlimited currency | A fresh install starts with 999,999,999 Glu credits and 999,999,999 Cash. If you install the patched app as an update, your current balance stays as it is. |  |
 

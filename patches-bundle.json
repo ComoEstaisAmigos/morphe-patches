@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-11-20T20:57:31",
-  "description": "## [1.1.0-dev.2](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.1...v1.1.0-dev.2) (2026-11-20)\n\n### ✨ New Features\n\n* **CKZ Origins:** Drop the Play expansion downloader ([0cbdaae](https://github.com/ComoEstaisAmigos/morphe-patches/commit/0cbdaae7edeee5f3535772d36edc58d10b127bd1))",
-  "download_url": "https://github.com/ComoEstaisAmigos/morphe-patches/releases/download/v1.1.0-dev.2/patches-1.1.0-dev.2.mpp",
+  "created_at": "2026-11-20T21:01:57",
+  "description": "## [1.1.0-dev.3](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.2...v1.1.0-dev.3) (2026-11-20)\n\n### ✨ New Features\n\n* **CKZ Origins:** Add `Remove unused permissions` patch ([d905c78](https://github.com/ComoEstaisAmigos/morphe-patches/commit/d905c780278f8dc411d25e65f58c6376f360344c))",
+  "download_url": "https://github.com/ComoEstaisAmigos/morphe-patches/releases/download/v1.1.0-dev.3/patches-1.1.0-dev.3.mpp",
   "signature_download_url": "",
-  "version": "1.1.0-dev.2"
+  "version": "1.1.0-dev.3"
 }
