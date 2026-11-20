@@ -1,3 +1,9 @@
+## [1.1.0-dev.2](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.1...v1.1.0-dev.2) (2026-11-20)
+
+### ✨ New Features
+
+* **CKZ Origins:** Drop the Play expansion downloader ([434a33f](https://github.com/ComoEstaisAmigos/morphe-patches/commit/434a33f89c2f334f192ba9d231b233d023d51e26))
+
 ## [1.1.0-dev.1](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.0.0...v1.1.0-dev.1) (2026-11-20)
 
 ### ✨ New Features

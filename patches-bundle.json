@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-11-20T20:53:20",
-  "description": "## [1.1.0-dev.1](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.0.0...v1.1.0-dev.1) (2026-11-20)\n\n### ✨ New Features\n\n* **CK Zombies:** Add `Disable friendly fire` patch ([132dbbf](https://github.com/ComoEstaisAmigos/morphe-patches/commit/132dbbf7d91774f68cbe3a6868f5ef54c69587ef))",
-  "download_url": "https://github.com/ComoEstaisAmigos/morphe-patches/releases/download/v1.1.0-dev.1/patches-1.1.0-dev.1.mpp",
+  "created_at": "2026-11-20T20:57:31",
+  "description": "## [1.1.0-dev.2](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0-dev.1...v1.1.0-dev.2) (2026-11-20)\n\n### ✨ New Features\n\n* **CKZ Origins:** Drop the Play expansion downloader ([434a33f](https://github.com/ComoEstaisAmigos/morphe-patches/commit/434a33f89c2f334f192ba9d231b233d023d51e26))",
+  "download_url": "https://github.com/ComoEstaisAmigos/morphe-patches/releases/download/v1.1.0-dev.2/patches-1.1.0-dev.2.mpp",
   "signature_download_url": "",
-  "version": "1.1.0-dev.1"
+  "version": "1.1.0-dev.2"
 }
