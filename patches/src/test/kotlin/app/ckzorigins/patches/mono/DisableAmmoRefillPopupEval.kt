@@ -11,9 +11,9 @@ import kotlin.test.assertTrue
 
 /**
  * What would have caught leaving the shop Info dialog after a Glu-credit weapon
- * buy. VirusTotal is irrelevant here; the dialog is InventoryShopItem.OnPurchase
- * calling PopupManager.ShowInfoPopup with "You received a free ammo refill for
- * buying this weapon!" after AddConsumable("AmmoRefill", 1).
+ * buy. The dialog is InventoryShopItem.OnPurchase calling
+ * PopupManager.ShowInfoPopup with "You received a free ammo refill for buying
+ * this weapon!" after AddConsumable("AmmoRefill", 1).
  *
  * After [disableAmmoRefillPopupPatch] that ShowInfoPopup sequence is 26 nops. The
  * grant stays. Either [unlimitedAmmoPatch] or [unlimitedCurrencyPatch] applies
