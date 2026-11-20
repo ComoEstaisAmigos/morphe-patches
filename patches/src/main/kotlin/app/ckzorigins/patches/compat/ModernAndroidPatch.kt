@@ -42,7 +42,7 @@ val modernAndroidPatch = patch(
         requireStockNative(NativeEdits.UNITY, NativeEdits.UNITY_SHA256)
         applyByteEdits(NativeEdits.UNITY, NativeEdits.TEXTREL)
         requireStockNative(NativeEdits.GWALLET, NativeEdits.GWALLET_SHA256)
-        applyByteEdits(NativeEdits.GWALLET, NativeEdits.SERIAL_ID)
+        applyByteEdits(NativeEdits.GWALLET, NativeEdits.SERIAL_ID + NativeEdits.JNI_GUARDS)
         makeBindExplicit(BindMarketBillingServiceFingerprint)
         makeBindExplicit(LicenseCheckAccessFingerprint)
         skipExpansionSizeCheck(ExpansionFileExistsFingerprint.method)
