@@ -26,7 +26,7 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.1.0-dev.6](https://github.com/ComoEstaisAmigos/morphe-patches/releases/tag/v1.1.0-dev.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;16 patches total
+> **[v1.1.0](https://github.com/ComoEstaisAmigos/morphe-patches/releases/tag/v1.1.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;16 patches total
 <details open>
 <summary>📦 CK Zombies&nbsp;&nbsp;•&nbsp;&nbsp;10 patches</summary>
 <br>
