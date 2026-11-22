@@ -64,7 +64,7 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| Disable telemetry | Turns off Flurry, Tune, Tapjoy, PlayHaven, Chartboost, Glu wallet, NTP, and the S3 content check. |  |
+| Disable telemetry | Stops the game from sending usage data to analytics and ad services, and from contacting Glu's servers at launch. |  |
 | Modern Android compatibility | Fixes the crash at launch on current Android and targets API 25 so that Android 14 and later install the game normally. |  |
 | Play intro once | Plays the intro video on the first launch after installing, and skips it after that. |  |
 | Remove unused permissions | Removes permissions the game no longer needs, such as phone and accounts, along with the dead services that needed them. |  |

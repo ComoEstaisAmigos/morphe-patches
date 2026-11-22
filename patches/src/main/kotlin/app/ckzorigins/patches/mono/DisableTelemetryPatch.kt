@@ -18,8 +18,8 @@ import app.morphe.patcher.util.returnEarly
 @Suppress("unused")
 val disableTelemetryPatch = patch(
     name = "Disable telemetry",
-    description = "Turns off Flurry, Tune, Tapjoy, PlayHaven, Chartboost, Glu wallet, NTP, " +
-        "and the S3 content check.",
+    description = "Stops the game from sending usage data to analytics and ad services, " +
+        "and from contacting Glu's servers at launch.",
 ) {
     compatibleWith(COMPATIBILITY)
     dependsOn(gluBackupPatch)
