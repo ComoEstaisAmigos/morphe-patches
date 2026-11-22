@@ -1,3 +1,11 @@
+## [1.2.0](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0...v1.2.0) (2026-11-22)
+
+### ✨ New Features
+
+* **CK Zombies:** Add `Disable explosion shake` patch ([8150481](https://github.com/ComoEstaisAmigos/morphe-patches/commit/8150481f97cc3536905f8d95d4d51223d21e8d72))
+* **CK Zombies:** Add `Unlimited ammo` patch ([c246d6f](https://github.com/ComoEstaisAmigos/morphe-patches/commit/c246d6fdf8d876f000ac30c178b48beca6cadd22))
+* **CKZ Origins - Unlimited ammo:** Show the HUD RELOAD alert and 0 ammo during reload ([d9af688](https://github.com/ComoEstaisAmigos/morphe-patches/commit/d9af6881bb8b31e0692228f7c287ea0da64fbd30))
+
 ## [1.2.0-dev.3](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.2.0-dev.2...v1.2.0-dev.3) (2026-11-22)
 
 ### ✨ New Features
