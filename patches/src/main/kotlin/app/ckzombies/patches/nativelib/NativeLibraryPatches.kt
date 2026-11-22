@@ -244,6 +244,73 @@ internal val serverCheckStallPatch = patch {
 }
 
 /**
+ * Shows the low-ammo HUD, and `0/capacity`, for as long as the weapon reloads.
+ *
+ * `CAmmoWin::Update()` reads the clip, prints it as `clip/capacity`, and calls the weapon low
+ * when it is under 34% of the capacity; `CGameplayWeaponInfoWindow::Update()` shows the red ammo
+ * icon and the `IDS_HUD_RELOAD` label from that flag. With unlimited ammo the clip is always
+ * full, so none of it ever appears.
+ *
+ * A 36-byte leaf cave replaces the single clip load: it returns 0 while `CDH_Weapon` reports
+ * reloading (the `+0x90` and `+0x88 == 3` fields `IsReloading()` reads) and the real clip
+ * otherwise. The HUD therefore prints `0/capacity` and its own 34% test turns the red icon and
+ * RELOAD label on for the length of the animation, then everything returns to full. The weapon's
+ * clip is never changed.
+ */
+internal val reloadHudPatch = patch {
+    dependsOn(nativeLibraryCheckPatch)
+
+    execute {
+        for (abi in ABIS) {
+            val plan = NativeEdits.HUD_RELOAD.getValue(abi)
+            val file = resourceFile(libraryPath(abi))
+            val elf = Elf32(file.readBytes())
+            try {
+                elf.mapExecutablePadding(abi)
+                elf.writeIntoZeros(plan.cave, plan.caveBytes.hexToBytes())
+                elf.apply(plan.edits)
+            } catch (e: IllegalStateException) {
+                throw PatchException("${libraryPath(abi)}: ${e.message}", e)
+            } catch (e: IllegalArgumentException) {
+                throw PatchException("${libraryPath(abi)}: ${e.message}", e)
+            }
+            file.writeBytes(elf.bytes())
+        }
+    }
+}
+
+/**
+ * Keeps the clip full. Every shot writes back the round count it read.
+ *
+ * `CDH_Weapon::MakeShot()` is the only function that lowers the clip at `+0x19c`: one
+ * `sub r3, r3, #1` on the common path, and a second one on the path for weapon types 8 and 9.
+ * Both become `mov r0, r0`, so the `str r3, [r4, #0x19c]` after each writes the loaded value
+ * back. The rest of the function, sound, animation and tracer included, still runs.
+ *
+ * Reloading is the tap on the ammo display: `CGameplayHUD::PointerPressed()` calls
+ * `CheckForReload(true)` only while the clip is below its capacity, and that `bge` becomes a
+ * no-op. The forced reload plays its animation and its last step sets the clip to the capacity,
+ * the value it already has, so the player can reload whenever they want. [reloadHudPatch] makes
+ * the HUD print `0/capacity` during that animation and keeps the red ammo icon and the RELOAD
+ * label on screen, the state the game otherwise only shows when the clip runs low.
+ *
+ * Grenades are counted by `CGrenadeManager`, not by a weapon's clip, and are left alone.
+ */
+@Suppress("unused")
+val unlimitedAmmoPatch = patch(
+    name = "Unlimited ammo",
+    description = "Ammo never decreases, and reloading still works.",
+) {
+    compatibleWith(COMPATIBILITY_CK_ZOMBIES)
+
+    dependsOn(nativeLibraryCheckPatch, obbMessagePatch, reloadHudPatch)
+
+    execute {
+        editLibraries(NativeEdits.UNLIMITED_AMMO)
+    }
+}
+
+/**
  * Stops the two native requests to Glu's `gserve` S3 bucket, which no longer exists (a free
  * bucket name can be claimed by anyone, who would then be serving this game over plain HTTP),
  * takes out the two menu buttons that lead to dead services, drops the offline message the dead
