@@ -1,3 +1,9 @@
+## [1.2.0-dev.3](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.2.0-dev.2...v1.2.0-dev.3) (2026-11-22)
+
+### ✨ New Features
+
+* **CKZ Origins - Unlimited ammo:** Show the HUD RELOAD alert and 0 ammo during reload ([d9af688](https://github.com/ComoEstaisAmigos/morphe-patches/commit/d9af6881bb8b31e0692228f7c287ea0da64fbd30))
+
 ## [1.2.0-dev.2](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.2.0-dev.1...v1.2.0-dev.2) (2026-11-22)
 
 ### ✨ New Features
