@@ -25,11 +25,6 @@ internal object NativeEdits {
             WordEdit(0x0057BCD0, 0x00000016L, 0x00000015L),
         ),
     )
-    /**
-     * `CNetworkAvailability::IsAvailable()` returns false, the answer an offline device gets.
-     * Two words: `mov r0, #0; bx lr` over the prologue. A bare `bx lr` would return the r0 the
-     * caller already had, which is this object, and every caller would read that as true.
-     */
     val IS_AVAILABLE: Map<String, List<WordEdit>> = mapOf(
         "armeabi" to listOf(
             WordEdit(0x000C43F4, 0xE92D4010L, 0xE3A00000L),
@@ -41,14 +36,6 @@ internal object NativeEdits {
         ),
     )
 
-    /**
-     * Two `sub r3, r3, #1` in `CDH_Weapon::MakeShot()` become no-ops, so the `str` that follows
-     * each one writes the clip back unchanged. The second one is the extra round weapon types 8
-     * and 9 spend per shot. The `bge` in `CGameplayHUD::PointerPressed` that skips the reload
-     * call while the clip is full becomes a no-op too, so tapping the ammo display reloads at
-     * any time; the forced reload plays its animation and puts the clip at its capacity, which
-     * is where it already was.
-     */
     val UNLIMITED_AMMO: Map<String, List<WordEdit>> = mapOf(
         "armeabi" to listOf(
             WordEdit(0x0041298C, 0xAAFFFFDEL, 0xE1A00000L),
@@ -61,28 +48,19 @@ internal object NativeEdits {
             WordEdit(0x00493FBC, 0xE2433001L, 0xE1A00000L),
         ),
     )
-    /**
-     * A 36-byte cave and one hook word. `CAmmoWin::Update` loads the clip here, so the cave
-     * returns 0 while the weapon reloads and the real clip otherwise. The HUD then formats
-     * `0/capacity`, and its own low-ammo test sees 0 under 34% and turns on the red ammo icon
-     * (`CAmmoWin+0x109`, icon `+0x10c`) and the `IDS_HUD_RELOAD` label the parent shows from
-     * that flag. The actual clip at `+0x19c` is untouched, so an interrupted reload cannot leave
-     * the weapon short. The reload check reads the two fields `CDH_Weapon::IsReloading()` does,
-     * `+0x90` and `+0x88 == 3`, inline because the cave is a leaf.
-     */
     val HUD_RELOAD: Map<String, HudPlan> = mapOf(
         "armeabi" to HudPlan(
             cave = 0x00596E80,
             caveBytes = "9c2193e59000d3e5000050e30200001a880093e5030050e30000001a0020a0e31eff2fe1",
             edits = listOf(
-                WordEdit(0x00417280, 0xE593219CL, 0xEB05FEFEL), // ldr r2, [r3, #0x19c]
+                WordEdit(0x00417280, 0xE593219CL, 0xEB05FEFEL),
             ),
         ),
         "armeabi-v7a" to HudPlan(
             cave = 0x00566E80,
             caveBytes = "9c1190e59020d0e5000052e30200001a882090e5030052e30000001a0010a0e31eff2fe1",
             edits = listOf(
-                WordEdit(0x003FB0E8, 0xE590119CL, 0xEB05AF64L), // ldr r1, [r0, #0x19c]
+                WordEdit(0x003FB0E8, 0xE590119CL, 0xEB05AF64L),
             ),
         ),
     )
@@ -143,11 +121,6 @@ internal object NativeEdits {
             WordEdit(0x0036D8C0, 0xE5D00004L, 0xE3A00000L),
         ),
     )
-    /**
-     * The `bl DGCamera::SetShake` in each `CSwerveGame::Blast` clone. Grenades go through one
-     * clone, barrels and other blasts through the other. The function itself is left alone, so
-     * gun recoil, a hit on the player, and the Lua `ShakeCamera` helper still shake.
-     */
     val EXPLOSION_SHAKE: Map<String, List<WordEdit>> = mapOf(
         "armeabi" to listOf(
             WordEdit(0x0030EC74, 0xEB059442L, 0xE1A00000L),
