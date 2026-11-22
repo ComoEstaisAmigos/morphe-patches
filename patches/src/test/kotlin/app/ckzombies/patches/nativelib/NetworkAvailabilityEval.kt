@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
  * checks apply the edits and assert the stub sets r0, returns at once, and that both call sites
  * test for zero and fall through to the offline path when they see it.
  */
-class ServerCheckStallEval {
+class NetworkAvailabilityEval {
     private val callSites = mapOf(
         "armeabi" to listOf(0x004BE508L, 0x004BE548L),
         "armeabi-v7a" to listOf(0x00496420L, 0x00496460L),
@@ -26,7 +26,7 @@ class ServerCheckStallEval {
             assertEquals(NativeEdits.STOCK_SHA256.getValue(abi), Elf32.sha256(stock.readBytes()), abi)
 
             val elf = Elf32(stock.readBytes())
-            val edits = NativeEdits.IS_AVAILABLE.getValue(abi).sortedBy { it.vaddr }
+            val edits = NativeEdits.NETWORK_AVAILABILITY.getValue(abi).sortedBy { it.vaddr }
             elf.apply(edits)
 
             val entry = edits[0].vaddr

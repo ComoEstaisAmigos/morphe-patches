@@ -258,11 +258,11 @@ val hideDailyDealPatch = patch(
  * would not do: r0 holds the CNetworkAvailability pointer the caller passed, which every caller
  * reads as true, so the stub sets r0 first.
  */
-internal val serverCheckStallPatch = patch {
+internal val networkAvailabilityPatch = patch {
     dependsOn(nativeLibraryCheckPatch)
 
     execute {
-        editLibraries(NativeEdits.IS_AVAILABLE)
+        editLibraries(NativeEdits.NETWORK_AVAILABILITY)
     }
 }
 

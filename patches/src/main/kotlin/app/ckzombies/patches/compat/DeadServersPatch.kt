@@ -1,7 +1,7 @@
 package app.ckzombies.patches.compat
 
 import app.ckzombies.patches.nativelib.deadServersNativePatch
-import app.ckzombies.patches.nativelib.serverCheckStallPatch
+import app.ckzombies.patches.nativelib.networkAvailabilityPatch
 import app.ckzombies.patches.shared.Constants.COMPATIBILITY_CK_ZOMBIES
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
@@ -37,7 +37,7 @@ internal object TapjoyConnectInstanceFingerprint : Fingerprint(
  * causes.
  *
  * Online, the loading screen waits about 30 seconds for gServe's version check, which only ends
- * on its own timeout; [serverCheckStallPatch] makes the game's network availability check return
+ * on its own timeout; [networkAvailabilityPatch] makes the game's network availability check return
  * false, so the login flow never starts and the loading step finishes on its first frame.
  *
  * The engine drives Tapjoy from its frame loop: the points balance about every five seconds in
@@ -80,7 +80,7 @@ val deadServersPatch = patch(
     compatibleWith(COMPATIBILITY_CK_ZOMBIES)
 
     dependsOn(
-        serverCheckStallPatch,
+        networkAvailabilityPatch,
         deadServersNativePatch,
         openFeintPatch,
         deadServiceRequestsPatch,
