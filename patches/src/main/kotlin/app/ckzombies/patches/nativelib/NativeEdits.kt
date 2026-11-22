@@ -25,14 +25,22 @@ internal object NativeEdits {
             WordEdit(0x0057BCD0, 0x00000016L, 0x00000015L),
         ),
     )
-    val GSERVE_STALL: Map<String, List<WordEdit>> = mapOf(
+    /**
+     * `CNetworkAvailability::IsAvailable()` returns false, the answer an offline device gets.
+     * Two words: `mov r0, #0; bx lr` over the prologue. A bare `bx lr` would return the r0 the
+     * caller already had, which is this object, and every caller would read that as true.
+     */
+    val IS_AVAILABLE: Map<String, List<WordEdit>> = mapOf(
         "armeabi" to listOf(
-            WordEdit(0x004C5350, 0xE92D4030L, 0xE12FFF1EL),
+            WordEdit(0x000C43F4, 0xE92D4010L, 0xE3A00000L),
+            WordEdit(0x000C43F8, 0xE59F3020L, 0xE12FFF1EL),
         ),
         "armeabi-v7a" to listOf(
-            WordEdit(0x0049D1CC, 0xE92D4030L, 0xE12FFF1EL),
+            WordEdit(0x000C4734, 0xE59F3024L, 0xE3A00000L),
+            WordEdit(0x000C4738, 0xE92D4010L, 0xE12FFF1EL),
         ),
     )
+
     val DEAD_SERVERS: Map<String, List<WordEdit>> = mapOf(
         "armeabi" to listOf(
             WordEdit(0x002B8638, 0xEB07BCDEL, 0xE1A00000L),

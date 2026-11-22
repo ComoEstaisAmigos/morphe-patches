@@ -222,17 +222,24 @@ val hideDailyDealPatch = patch(
 /**
  * Removes the wait on the loading screen that only happens with a live connection.
  *
- * `AppInitGameDataGS::Load()` reports "not finished" for as long as the login flow runs, and
- * online it starts one login step: a version check against Glu's gServe, switched off years
- * ago, so the flow only ends on its own timeout. Returning from `App::StartGServerLight()`
- * without queueing anything leaves the flow not running, and the task completes on the next
- * frame, the same path an offline launch already takes. Nothing else calls the function.
+ * `AppInitGameDataGS::Load()` reports "not finished" while the game says the network is
+ * available and the login flow is running. Online it starts one login step: a version check
+ * against Glu's gServe, switched off years ago, so the flow only ends on its own timeout.
+ * Offline the availability check is false and the step falls straight through to
+ * `CSaveManager::PauseByGServe(false)` and `App::InitGameData()`, which is the launch everyone
+ * without a connection already gets.
+ *
+ * `CNetworkAvailability::IsAvailable()` is the only place the native code asks. It has two
+ * callers, both in that loading step, and its two-word body becomes `return false`, so the step
+ * finishes on its first frame and `App::StartGServerLight()` is never called. A bare `bx lr`
+ * would not do: r0 holds the CNetworkAvailability pointer the caller passed, which every caller
+ * reads as true, so the stub sets r0 first.
  */
 internal val serverCheckStallPatch = patch {
     dependsOn(nativeLibraryCheckPatch)
 
     execute {
-        editLibraries(NativeEdits.GSERVE_STALL)
+        editLibraries(NativeEdits.IS_AVAILABLE)
     }
 }
 

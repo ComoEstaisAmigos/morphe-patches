@@ -191,7 +191,7 @@ class Elf32Test {
     fun `generated tables are well formed`() {
         val tables = listOf(
             "TEXT_RELOCATION" to NativeEdits.TEXT_RELOCATION,
-            "GSERVE_STALL" to NativeEdits.GSERVE_STALL,
+            "IS_AVAILABLE" to NativeEdits.IS_AVAILABLE,
             "DEAD_SERVERS" to NativeEdits.DEAD_SERVERS,
             "JNI_GUARDS" to NativeEdits.JNI_GUARDS,
             "JNI_ARGUMENTS" to NativeEdits.JNI_ARGUMENTS,
@@ -241,6 +241,28 @@ class Elf32Test {
         }
         assertEquals(0x1000, NativeEdits.CURRENCY.getValue("armeabi").spliceSize, "armeabi splices one page")
         assertEquals(null, NativeEdits.CURRENCY.getValue("armeabi-v7a").spliceAtOffset, "v7a has room already")
+    }
+
+    @Test
+    fun `the network check is stubbed to return false instead of the caller's r0`() {
+        for (abi in ABIS) {
+            val edits = NativeEdits.IS_AVAILABLE.getValue(abi).sortedBy { it.vaddr }
+            assertEquals(2, edits.size, "$abi: two words")
+            assertEquals(4L, edits[1].vaddr - edits[0].vaddr, "$abi: the prologue is two words")
+            val (setResult, returnNow) = edits
+            assertEquals(0xE3A00000L, setResult.new, "$abi: mov r0, #0")
+            assertEquals(0xE12FFF1EL, returnNow.new, "$abi: bx lr")
+            assertTrue(
+                setResult.old == 0xE92D4010L || returnNow.old == 0xE92D4010L,
+                "$abi: one word of the prologue is push {r4, lr}",
+            )
+            val literalLoad = if (setResult.old == 0xE92D4010L) returnNow.old else setResult.old
+            assertEquals(
+                0xE59F3000L,
+                literalLoad and 0xFFFFF000L,
+                "$abi: the other is the literal load that set up the platform call",
+            )
+        }
     }
 
     @Test
