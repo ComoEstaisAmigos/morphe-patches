@@ -171,6 +171,29 @@ val protectCiviliansPatch = patch(
 }
 
 /**
+ * Stops the camera shaking on any `CSwerveGame::Blast`.
+ *
+ * `DGCamera::SetShake` is the only place the camera starts a shake. Five sites call it: the
+ * two `CSwerveGame::Blast` clones, `CDH_Weapon::MakeShot`, `CSwerveGame::OnShooterAttacked`,
+ * and the Lua `ShakeCamera` helper. Each blast clone's `bl` becomes `mov r0, r0`, so an
+ * explosion never starts a shake. The other three sites still call `SetShake`, so firing and
+ * taking a hit still kick the camera.
+ */
+@Suppress("unused")
+val disableExplosionShakePatch = patch(
+    name = "Disable explosion shake",
+    description = "Stops the player fov shaking when something explodes.",
+) {
+    compatibleWith(COMPATIBILITY_CK_ZOMBIES)
+
+    dependsOn(nativeLibraryCheckPatch, obbMessagePatch)
+
+    execute {
+        editLibraries(NativeEdits.EXPLOSION_SHAKE)
+    }
+}
+
+/**
  * Shows the two weapons Glu shipped hidden: AA-2012 (id 24) and Dual MP-643 (id 32).
  *
  * The shop consults `CItem::isHidden()`, which returns the item's hidden byte, and skips any

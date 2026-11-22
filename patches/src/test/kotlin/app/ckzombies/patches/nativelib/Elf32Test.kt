@@ -200,6 +200,7 @@ class Elf32Test {
             "SOUND_CACHE_MODE" to NativeEdits.SOUND_CACHE_MODE,
             "DAILY_DEAL" to NativeEdits.DAILY_DEAL,
             "HIDDEN_WEAPONS" to NativeEdits.HIDDEN_WEAPONS,
+            "EXPLOSION_SHAKE" to NativeEdits.EXPLOSION_SHAKE,
             "CURRENCY" to NativeEdits.CURRENCY.mapValues { (_, plan) -> plan.edits },
             "CIVILIAN_IMMUNITY" to NativeEdits.CIVILIAN_IMMUNITY.mapValues { (_, plan) -> plan.edits },
         )
@@ -358,6 +359,22 @@ class Elf32Test {
             val menu = edits.single { it.old and 0xFFFFFF00L == 0xE2853000L }
             assertEquals(0xE2853000L or 8L + 4 * 0x14, menu.old, "$abi: the table end covers four entries")
             assertEquals(0xE2853000L or 8L + 2 * 0x14, menu.new, "$abi: and then two")
+        }
+    }
+
+    @Test
+    fun `the explosion shake edits nop both Blast calls to SetShake`() {
+        fun target(at: Long, word: Long): Long {
+            val imm = word and 0xFFFFFFL
+            return at + 8 + 4 * (if (imm and 0x800000L != 0L) imm - 0x1000000L else imm)
+        }
+        for (abi in ABIS) {
+            val edits = NativeEdits.EXPLOSION_SHAKE.getValue(abi)
+            assertEquals(2, edits.size, "$abi: one bl in each Blast clone")
+            val dest = edits.map { target(it.vaddr, it.old) }.toSet()
+            assertEquals(1, dest.size, "$abi: both bls reach the same SetShake")
+            assertTrue(edits.all { it.old ushr 24 == 0xEBL }, "$abi: both were bl")
+            assertTrue(edits.all { it.new == 0xE1A00000L }, "$abi: both become mov r0, r0")
         }
     }
 

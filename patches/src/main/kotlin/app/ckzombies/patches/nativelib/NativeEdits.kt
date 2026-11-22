@@ -143,6 +143,21 @@ internal object NativeEdits {
             WordEdit(0x0036D8C0, 0xE5D00004L, 0xE3A00000L),
         ),
     )
+    /**
+     * The `bl DGCamera::SetShake` in each `CSwerveGame::Blast` clone. Grenades go through one
+     * clone, barrels and other blasts through the other. The function itself is left alone, so
+     * gun recoil, a hit on the player, and the Lua `ShakeCamera` helper still shake.
+     */
+    val EXPLOSION_SHAKE: Map<String, List<WordEdit>> = mapOf(
+        "armeabi" to listOf(
+            WordEdit(0x0030EC74, 0xEB059442L, 0xE1A00000L),
+            WordEdit(0x0030F7DC, 0xEB059168L, 0xE1A00000L),
+        ),
+        "armeabi-v7a" to listOf(
+            WordEdit(0x002F599C, 0xEB058448L, 0xE1A00000L),
+            WordEdit(0x002F6224, 0xEB058226L, 0xE1A00000L),
+        ),
+    )
     val JNI_GUARDS: Map<String, List<WordEdit>> = mapOf(
         "armeabi" to listOf(
             WordEdit(0x000F39A0, 0xE5906040L, 0xE3A06001L),
