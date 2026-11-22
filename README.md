@@ -26,9 +26,9 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.2.0-dev.1](https://github.com/ComoEstaisAmigos/morphe-patches/releases/tag/v1.2.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;17 patches total
+> **[v1.2.0-dev.2](https://github.com/ComoEstaisAmigos/morphe-patches/releases/tag/v1.2.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;18 patches total
 <details open>
-<summary>📦 CK Zombies&nbsp;&nbsp;•&nbsp;&nbsp;11 patches</summary>
+<summary>📦 CK Zombies&nbsp;&nbsp;•&nbsp;&nbsp;12 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -38,6 +38,7 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
+| Disable explosion shake | Stops the player fov shaking when something explodes. |  |
 | Disable friendly fire | Makes civilians immune to the player's shots and explosions. |  |
 | Hide Daily Deal popup | Hides the annoying Daily Deal popup that shows at every launch. The deal is still in the store. |  |
 | Modern Android compatibility | Fixes the crash at launch on current Android and targets API 25 so that Android 14 and later install the game normally. |  |

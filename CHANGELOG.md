@@ -1,3 +1,9 @@
+## [1.2.0-dev.2](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.2.0-dev.1...v1.2.0-dev.2) (2026-11-22)
+
+### ✨ New Features
+
+* **CK Zombies:** Add `Disable explosion shake` patch ([8150481](https://github.com/ComoEstaisAmigos/morphe-patches/commit/8150481f97cc3536905f8d95d4d51223d21e8d72))
+
 ## [1.2.0-dev.1](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0...v1.2.0-dev.1) (2026-11-22)
 
 ### ✨ New Features
