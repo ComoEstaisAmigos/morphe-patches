@@ -1,3 +1,9 @@
+## [1.2.0-dev.1](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0...v1.2.0-dev.1) (2026-11-22)
+
+### ✨ New Features
+
+* **CK Zombies:** Add `Unlimited ammo` patch ([c246d6f](https://github.com/ComoEstaisAmigos/morphe-patches/commit/c246d6fdf8d876f000ac30c178b48beca6cadd22))
+
 ## [1.1.0](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.0.0...v1.1.0) (2026-11-21)
 
 ### ✨ New Features
