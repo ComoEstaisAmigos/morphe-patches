@@ -13,7 +13,7 @@ import app.adebisi.patches.shared.STATIC
 import app.adebisi.patches.shared.addStub
 import app.adebisi.patches.shared.emptySdkPrefixes
 import app.adebisi.patches.shared.rewriteOriginalDexThroughDexPool
-import app.deadcrossing.patches.shared.requireFeelingtouchSigner
+import app.adebisi.patches.shared.requireFeelingtouchSigner
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.document
 import app.morphe.patcher.patch.mutableClassDefBy

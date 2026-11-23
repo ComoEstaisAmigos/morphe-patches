@@ -2,6 +2,7 @@ package app.adebisi.patches.shared
 
 import app.ckzorigins.patches.nativelib.NativeEdits as OriginsNative
 import app.ckzombies.patches.nativelib.NativeEdits as ZombiesNative
+import app.deadcrossing.patches.nativelib.NativeEdits as CrossingNative
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -16,6 +17,11 @@ import kotlin.test.assertTrue
 class SignerEval {
     @Test
     fun `each game's lib SHA and cert SHA are different checks`() {
+        assertEquals(64, CrossingNative.MONO_REAL_SHA256.length)
+        assertEquals(64, FEELINGTOUCH_CERT_SHA256.length)
+        assertNotEquals(CrossingNative.MONO_REAL_SHA256, FEELINGTOUCH_CERT_SHA256)
+        assertTrue(FEELINGTOUCH_CERT_SHA256.startsWith("02a90ad1"))
+
         for (hash in ZombiesNative.STOCK_SHA256.values) {
             assertEquals(64, hash.length)
             assertNotEquals(GLU_MOBILE_CERT_SHA256, hash)
@@ -27,5 +33,6 @@ class SignerEval {
 
         assertEquals(64, GLU_MOBILE_CERT_SHA256.length)
         assertTrue(GLU_MOBILE_CERT_SHA256.startsWith("5926ff8c"))
+        assertNotEquals(FEELINGTOUCH_CERT_SHA256, GLU_MOBILE_CERT_SHA256)
     }
 }
