@@ -26,7 +26,7 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.2.1-dev.1](https://github.com/ComoEstaisAmigos/morphe-patches/releases/tag/v1.2.1-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;18 patches total
+> **[v1.3.0-dev.1](https://github.com/ComoEstaisAmigos/morphe-patches/releases/tag/v1.3.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;22 patches total
 <details open>
 <summary>📦 CK Zombies&nbsp;&nbsp;•&nbsp;&nbsp;12 patches</summary>
 <br>
@@ -70,6 +70,24 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 | Remove unused permissions | Removes permissions the game no longer needs, such as phone and accounts, along with the dead services that needed them. |  |
 | Unlimited ammo | Ammo never decreases, and reloading still works. |  |
 | Unlimited currency | A fresh install starts with 999,999,999 Glu credits and 999,999,999 Cash. If you install the patched app as an update, your current balance stays as it is. |  |
+
+</details>
+
+<details open>
+<summary>📦 Dead Crossing&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.06 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| Disable telemetry | Stops the game from sending usage data to analytics and ad services. |  |
+| Modern Android compatibility | Fixes the crash at launch on current Android and targets API 25 so that Android 14 and later install the game normally. |  |
+| Remove unused permissions | Removes permissions the game no longer needs, such as phone and accounts, along with the dead services that needed them. |  |
+| Unlimited currency | A fresh install starts with 99,999,999 Glory and 99,999,999 Gold. If you install the patched app as an update, your current balance stays as it is. |  |
 
 </details>
 
