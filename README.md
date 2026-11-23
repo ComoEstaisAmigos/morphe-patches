@@ -26,9 +26,9 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 
 ## 🩹 Patches list
 
-<!-- PATCHES_START EXPANDED -->
+<!-- PATCHES_START -->
 > **[v1.3.0](https://github.com/ComoEstaisAmigos/morphe-patches/releases/tag/v1.3.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;22 patches total
-<details open>
+<details>
 <summary>📦 CK Zombies&nbsp;&nbsp;•&nbsp;&nbsp;12 patches</summary>
 <br>
 
@@ -54,7 +54,7 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 
 </details>
 
-<details open>
+<details>
 <summary>📦 CKZ Origins&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
 
@@ -74,7 +74,7 @@ Required OBB doesn't mean you need to put the OBB file manually. If you provide 
 
 </details>
 
-<details open>
+<details>
 <summary>📦 Dead Crossing&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
 
