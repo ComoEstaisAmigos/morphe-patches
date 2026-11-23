@@ -1,6 +1,7 @@
 package app.ckzorigins.patches.mono
 
 import app.adebisi.patches.shared.emptySdkPrefixes
+import app.adebisi.patches.shared.rewriteOriginalDexThroughDexPool
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -29,6 +30,7 @@ class EmptyTelemetrySdksTest {
         val emptied = TELEMETRY_SDK_PREFIXES.sumOf { it.second }
         assertEquals(1581, emptied)
         assertEquals("emptySdkPrefixes", ::emptySdkPrefixes.name)
+        assertEquals("rewriteOriginalDexThroughDexPool", ::rewriteOriginalDexThroughDexPool.name)
     }
 
     @Test

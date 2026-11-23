@@ -3,6 +3,7 @@ package app.ckzorigins.patches.mono
 import app.ckzorigins.patches.shared.Constants.COMPATIBILITY
 import app.ckzorigins.patches.shared.Constants.ORIGINAL_APK
 import app.adebisi.patches.shared.applyByteEdits
+import app.adebisi.patches.shared.rewriteOriginalDexThroughDexPool
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.patch
 import app.morphe.patcher.util.returnEarly
@@ -14,6 +15,8 @@ import app.morphe.patcher.util.returnEarly
  *
  * The leftover SDK classes still carry their URL constants. After the wrappers
  * return, those classes are empty shells ([emptyTelemetrySdks]).
+ * [rewriteOriginalDexThroughDexPool] so emptied URL constants do not stay in the
+ * original DEX string pool.
  */
 @Suppress("unused")
 val disableTelemetryPatch = patch(
@@ -54,5 +57,6 @@ val disableTelemetryPatch = patch(
         applyByteEdits(DllEdits.PATH, DllEdits.HOSTS + DllEdits.TAPJOY, ORIGINAL_APK)
         applyByteEdits(DllEdits.FIRSTPASS_PATH, DllEdits.FIRSTPASS_HOSTS, ORIGINAL_APK)
         emptyTelemetrySdks()
+        rewriteOriginalDexThroughDexPool()
     }
 }
