@@ -1,3 +1,10 @@
+## [1.2.1-dev.1](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.2.0...v1.2.1-dev.1) (2026-11-23)
+
+### 🐛 Bug Fixes
+
+* **CK Zombies - Stop requests to dead servers:** Drop emptied SDK hosts from the DEX string pool ([e05d0de](https://github.com/ComoEstaisAmigos/morphe-patches/commit/e05d0def5f9f6cb34d06b35601cfa20e8207443d))
+* **CKZ Origins - Disable telemetry:** Drop emptied SDK hosts from the DEX string pool ([61ab94d](https://github.com/ComoEstaisAmigos/morphe-patches/commit/61ab94de66e2411b6a02dab91e486f40db0e36a7))
+
 ## [1.2.0](https://github.com/ComoEstaisAmigos/morphe-patches/compare/v1.1.0...v1.2.0) (2026-11-22)
 
 ### ✨ New Features
