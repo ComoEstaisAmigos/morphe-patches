@@ -1,7 +1,8 @@
 package app.ckzorigins.patches.mono
 
 import app.ckzorigins.patches.shared.Constants.COMPATIBILITY
-import app.ckzorigins.patches.shared.applyByteEdits
+import app.ckzorigins.patches.shared.Constants.ORIGINAL_APK
+import app.adebisi.patches.shared.applyByteEdits
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.patch
 import app.morphe.patcher.util.returnEarly
@@ -12,8 +13,7 @@ import app.morphe.patcher.util.returnEarly
  * here; the C# copies are a separate rewrite.
  *
  * The leftover SDK classes still carry their URL constants. After the wrappers
- * return, those classes are empty shells ([emptyTelemetrySdks]), same trick as
- * the expansion downloader.
+ * return, those classes are empty shells ([emptyTelemetrySdks]).
  */
 @Suppress("unused")
 val disableTelemetryPatch = patch(
@@ -51,8 +51,8 @@ val disableTelemetryPatch = patch(
             """,
         )
 
-        applyByteEdits(DllEdits.PATH, DllEdits.HOSTS + DllEdits.TAPJOY)
-        applyByteEdits(DllEdits.FIRSTPASS_PATH, DllEdits.FIRSTPASS_HOSTS)
+        applyByteEdits(DllEdits.PATH, DllEdits.HOSTS + DllEdits.TAPJOY, ORIGINAL_APK)
+        applyByteEdits(DllEdits.FIRSTPASS_PATH, DllEdits.FIRSTPASS_HOSTS, ORIGINAL_APK)
         emptyTelemetrySdks()
     }
 }

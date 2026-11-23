@@ -1,4 +1,4 @@
-package app.ckzorigins.patches.shared
+package app.adebisi.patches.shared
 
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.resourceFile
@@ -51,18 +51,35 @@ internal fun ByteArray.applyEdits(edits: List<ByteEdit>): ByteArray {
 /**
  * Replaces [edits] in [path], all or nothing. Each range must still hold its old bytes.
  */
-internal fun applyByteEdits(path: String, edits: List<ByteEdit>) {
+internal fun applyByteEdits(path: String, edits: List<ByteEdit>, original: String) {
     val file = resourceFile(path, copy = true)
     if (!file.exists()) throw PatchException("$path is missing from this APK")
     val patched = try {
         file.readBytes().applyEdits(edits)
     } catch (e: IllegalStateException) {
         throw PatchException(
-            "$path: ${e.message}. Patch the Origins 2.0.1 APK signed by Glu Mobile, not a repack.",
+            "$path: ${e.message}. Patch the original $original, not a repack.",
             e,
         )
     } catch (e: IllegalArgumentException) {
         throw PatchException("$path: ${e.message}", e)
     }
     file.writeBytes(patched)
+}
+
+internal fun requireStockNative(
+    path: String,
+    expectedSha: String,
+    publisher: String,
+    original: String,
+) {
+    val lib = resourceFile(path, copy = true)
+    if (!lib.exists()) throw PatchException("$path is missing from this APK")
+    val hash = lib.readBytes().sha256()
+    if (hash != expectedSha) {
+        throw PatchException(
+            "$path is not $publisher's original (sha256 ${hash.take(12)}). " +
+                "Patch the original $original, not a repack or a patched build.",
+        )
+    }
 }
