@@ -14,6 +14,7 @@ OBB when that column says required.
 | ----------------------------------- | ---------------------------- | -------- | ------------------------ | ------------------------- |
 | Contract Killer: Zombies (NR)       | `com.glu.android.zombsniper` | required | `armeabi`, `armeabi-v7a` (⚠️) | `.xapk`, `.apks`, `.apkm` |
 | Contract Killer: Zombies 2: Origins | `com.glu.ckzombies2`         | required | `armeabi-v7a` (⚠️) | `.xapk`, `.apks`, `.apkm` |
+| Dead Crossing                       | `com.feelingtouch.crossx`    | -        | `armeabi-v7a` (⚠️) | `.apk`                    |
 
 >⚠️: 32-bit only. Does not install on 64-bit-only devices.
 
