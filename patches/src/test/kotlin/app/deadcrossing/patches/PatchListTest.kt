@@ -2,6 +2,7 @@ package app.deadcrossing.patches
 
 import app.ckzombies.patches.compat.unusedPermissionsPatch as zombiesUnusedPermissionsPatch
 import app.deadcrossing.patches.compat.emptyYoumiSdksPatch
+import app.deadcrossing.patches.compat.modernAndroidPatch
 import app.deadcrossing.patches.compat.unusedPermissionsPatch
 import app.deadcrossing.patches.mono.unlimitedCurrencyPatch
 import kotlin.test.Test
@@ -13,6 +14,7 @@ import kotlin.test.assertTrue
 private val PATCHES = listOf(
     unlimitedCurrencyPatch,
     unusedPermissionsPatch,
+    modernAndroidPatch,
 )
 
 class PatchListTest {
@@ -22,6 +24,7 @@ class PatchListTest {
             mapOf(
                 "Unlimited currency" to true,
                 "Remove unused permissions" to true,
+                "Modern Android compatibility" to true,
             ),
             PATCHES.associate { it.name!! to it.default },
         )
@@ -58,6 +61,11 @@ class PatchListTest {
             "A fresh install starts with 99,999,999 Glory and 99,999,999 Gold. " +
                 "If you install the patched app as an update, your current balance stays as it is.",
             unlimitedCurrencyPatch.description,
+        )
+        assertEquals(
+            "Fixes the crash at launch on current Android and targets API 25 so that Android 14 and later " +
+                "install the game normally.",
+            modernAndroidPatch.description,
         )
         assertEquals(zombiesUnusedPermissionsPatch.name, unusedPermissionsPatch.name)
         assertEquals(zombiesUnusedPermissionsPatch.description, unusedPermissionsPatch.description)
