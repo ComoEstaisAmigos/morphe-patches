@@ -1,5 +1,6 @@
 package app.ckzombies.patches.compat
 
+import app.adebisi.patches.shared.rewriteOriginalDexThroughDexPool
 import app.ckzombies.patches.nativelib.deadServersNativePatch
 import app.ckzombies.patches.nativelib.networkAvailabilityPatch
 import app.ckzombies.patches.shared.Constants.COMPATIBILITY_CK_ZOMBIES
@@ -67,9 +68,8 @@ internal object TapjoyConnectInstanceFingerprint : Fingerprint(
  * returning there is enough. `GluPlatformActivity.onCreate` still reads the APID through
  * PushManager for JNI initialise, so that getter is put back as a stub.
  *
- * In the mode Morphe Manager patches with, the old bytes stay behind in the original dex
- * without their class definitions, and AhnLab no longer flags OpenFeint either
- * (`PUP/Android.SmsReg`, already on Glu's own APK; OpenFeint sends no SMS).
+ * [rewriteOriginalDexThroughDexPool] so emptied URL constants do not stay in the
+ * original DEX string pool.
  */
 @Suppress("unused")
 val deadServersPatch = patch(
@@ -104,5 +104,6 @@ val deadServersPatch = patch(
                 return-object v0
             """,
         )
+        rewriteOriginalDexThroughDexPool()
     }
 }
