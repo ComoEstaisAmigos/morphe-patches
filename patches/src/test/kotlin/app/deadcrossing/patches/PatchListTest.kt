@@ -1,6 +1,8 @@
 package app.deadcrossing.patches
 
+import app.ckzombies.patches.compat.unusedPermissionsPatch as zombiesUnusedPermissionsPatch
 import app.deadcrossing.patches.compat.emptyYoumiSdksPatch
+import app.deadcrossing.patches.compat.unusedPermissionsPatch
 import app.deadcrossing.patches.mono.unlimitedCurrencyPatch
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -10,6 +12,7 @@ import kotlin.test.assertTrue
 
 private val PATCHES = listOf(
     unlimitedCurrencyPatch,
+    unusedPermissionsPatch,
 )
 
 class PatchListTest {
@@ -18,6 +21,7 @@ class PatchListTest {
         assertEquals(
             mapOf(
                 "Unlimited currency" to true,
+                "Remove unused permissions" to true,
             ),
             PATCHES.associate { it.name!! to it.default },
         )
@@ -55,5 +59,7 @@ class PatchListTest {
                 "If you install the patched app as an update, your current balance stays as it is.",
             unlimitedCurrencyPatch.description,
         )
+        assertEquals(zombiesUnusedPermissionsPatch.name, unusedPermissionsPatch.name)
+        assertEquals(zombiesUnusedPermissionsPatch.description, unusedPermissionsPatch.description)
     }
 }
