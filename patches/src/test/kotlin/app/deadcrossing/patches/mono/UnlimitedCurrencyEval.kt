@@ -33,7 +33,7 @@ class UnlimitedCurrencyEval {
     }
 
     @Test
-    fun `clamp IL is 21 bytes`() {
+    fun `clamp IL is 21 bytes and PassMission FailedMission stay out of HOSTS`() {
         val goldCave = DllEdits.CURRENCY_BODIES[0].new.toHex().drop(32)
         val meritCave = DllEdits.CURRENCY_BODIES[1].new.toHex().drop(32)
         assertEquals(42, goldCave.length)
@@ -42,5 +42,7 @@ class UnlimitedCurrencyEval {
         assertTrue(meritCave.startsWith("022520ffe0f50531062620ffe0f50580"))
         assertTrue(goldCave.endsWith("e70700042a"))
         assertTrue(meritCave.endsWith("e80700042a"))
+        assertFalse(DllEdits.HOSTS.any { it.offset == 0x4BF4 })
+        assertFalse(DllEdits.HOSTS.any { it.offset == 0x4C28 })
     }
 }

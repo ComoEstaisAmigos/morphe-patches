@@ -68,4 +68,16 @@ internal object NativeEdits {
         ByteEdit(0x68A8A, "024b9847", "fff753fb"),
         ByteEdit(0x62B58, "02", "00"),
     )
+
+    /**
+     * Unity 4 `http://stats.unity3d.com/HWStats.cgi` C string in `libunity`.
+     * Applied on [UNITY_PROXY] after Modern Android copies the real library there.
+     */
+    val UNITY_HWSTATS = listOf(
+        ByteEdit(
+            0x8742A4,
+            "687474703a2f2f73746174732e756e69747933642e636f6d2f485753746174732e636769",
+            "000000000000000000000000000000000000000000000000000000000000000000000000",
+        ),
+    )
 }

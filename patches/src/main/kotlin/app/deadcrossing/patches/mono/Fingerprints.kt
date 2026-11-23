@@ -23,3 +23,10 @@ internal object ActivityOnCreateFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf("Landroid/os/Bundle;"),
 )
+
+internal object ActivityOnResumeFingerprint : Fingerprint(
+    definingClass = UNITY_ANDROID_ACTIVITY,
+    name = "onResume",
+    returnType = "V",
+    parameters = listOf(),
+)

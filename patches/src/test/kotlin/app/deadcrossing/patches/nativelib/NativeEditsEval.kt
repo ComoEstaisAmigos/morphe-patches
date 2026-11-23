@@ -37,6 +37,17 @@ class NativeEditsEval {
     }
 
     @Test
+    fun `stock libunity still has the HWStats URL`() {
+        val unity = zipBytes(originalApk(), NativeEdits.UNITY_REAL)
+        val off = NativeEdits.UNITY_HWSTATS[0].offset
+        val old = NativeEdits.UNITY_HWSTATS[0].old
+        assertTrue(unity.copyOfRange(off, off + old.size).contentEquals(old))
+        val patched = unity.applyEdits(NativeEdits.UNITY_TEXTREL + NativeEdits.UNITY_HWSTATS)
+        assertTrue(patched.copyOfRange(off, off + old.size).contentEquals(ByteArray(old.size)))
+        assertTrue(textRelocTypes(patched).isEmpty())
+    }
+
+    @Test
     fun `atexit rewrite is a Thumb bl to plt not a nop`() {
         assertEquals("024b9847", NativeEdits.MAIN_TEXTREL[5].old.toHex())
         assertEquals("fff7a7ff", NativeEdits.MAIN_TEXTREL[5].new.toHex())

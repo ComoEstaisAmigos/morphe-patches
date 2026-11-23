@@ -88,6 +88,26 @@ class NativeEditsTest {
         assertFalse("00207047" in NativeEdits.MAIN_TEXTREL[3].new.toHex())
     }
 
+    @Test
+    fun `unity hwstats zeros the first-launch stats host`() {
+        assertEquals(1, NativeEdits.UNITY_HWSTATS.size)
+        assertEquals(0x8742A4, NativeEdits.UNITY_HWSTATS[0].offset)
+        assertEquals(
+            "687474703a2f2f73746174732e756e69747933642e636f6d2f485753746174732e636769",
+            NativeEdits.UNITY_HWSTATS[0].old.toHex(),
+        )
+        assertEquals(36, NativeEdits.UNITY_HWSTATS[0].old.size)
+        assertEquals(36, NativeEdits.UNITY_HWSTATS[0].new.size)
+        assertTrue(NativeEdits.UNITY_HWSTATS[0].new.all { it == 0.toByte() })
+        assertTrue("stats.unity3d.com".toByteArray().toHex() in NativeEdits.UNITY_HWSTATS[0].old.toHex())
+        val data = ByteArray(NativeEdits.UNITY_HWSTATS[0].offset + 36)
+        NativeEdits.UNITY_HWSTATS[0].old.copyInto(data, NativeEdits.UNITY_HWSTATS[0].offset)
+        val patched = data.applyEdits(NativeEdits.UNITY_HWSTATS)
+        assertTrue(
+            patched.copyOfRange(0x8742A4, 0x8742A4 + 36).contentEquals(ByteArray(36)),
+        )
+    }
+
     private fun assertOnDlclose(edits: List<ByteEdit>) {
         assertEquals("17", edits.first().old.toHex())
         assertEquals("00", edits.first().new.toHex())

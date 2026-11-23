@@ -4,6 +4,7 @@ import app.ckzombies.patches.compat.unusedPermissionsPatch as zombiesUnusedPermi
 import app.deadcrossing.patches.compat.emptyYoumiSdksPatch
 import app.deadcrossing.patches.compat.modernAndroidPatch
 import app.deadcrossing.patches.compat.unusedPermissionsPatch
+import app.deadcrossing.patches.mono.disableTelemetryPatch
 import app.deadcrossing.patches.mono.unlimitedCurrencyPatch
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -13,8 +14,9 @@ import kotlin.test.assertTrue
 
 private val PATCHES = listOf(
     unlimitedCurrencyPatch,
-    unusedPermissionsPatch,
+    disableTelemetryPatch,
     modernAndroidPatch,
+    unusedPermissionsPatch,
 )
 
 class PatchListTest {
@@ -23,8 +25,9 @@ class PatchListTest {
         assertEquals(
             mapOf(
                 "Unlimited currency" to true,
-                "Remove unused permissions" to true,
+                "Disable telemetry" to true,
                 "Modern Android compatibility" to true,
+                "Remove unused permissions" to true,
             ),
             PATCHES.associate { it.name!! to it.default },
         )
@@ -36,6 +39,12 @@ class PatchListTest {
         for (patch in PATCHES) {
             assertTrue(emptyYoumiSdksPatch in patch.dependencies, patch.name)
         }
+    }
+
+    @Test
+    fun `disable telemetry waits for modern android to copy libunity`() {
+        assertTrue(modernAndroidPatch in disableTelemetryPatch.dependencies)
+        assertFalse(disableTelemetryPatch in modernAndroidPatch.dependencies)
     }
 
     @Test
@@ -56,7 +65,7 @@ class PatchListTest {
     }
 
     @Test
-    fun `currency description matches the other games`() {
+    fun `currency and modern android match the other games and telemetry stays short`() {
         assertEquals(
             "A fresh install starts with 99,999,999 Glory and 99,999,999 Gold. " +
                 "If you install the patched app as an update, your current balance stays as it is.",
@@ -69,5 +78,12 @@ class PatchListTest {
         )
         assertEquals(zombiesUnusedPermissionsPatch.name, unusedPermissionsPatch.name)
         assertEquals(zombiesUnusedPermissionsPatch.description, unusedPermissionsPatch.description)
+        assertEquals(
+            "Stops the game from sending usage data to analytics and ad services.",
+            disableTelemetryPatch.description,
+        )
+        assertFalse("Youmi" in disableTelemetryPatch.description!!, disableTelemetryPatch.name)
+        assertFalse("clamp" in disableTelemetryPatch.description!!, disableTelemetryPatch.name)
+        assertFalse("method bodies" in disableTelemetryPatch.description!!, disableTelemetryPatch.name)
     }
 }

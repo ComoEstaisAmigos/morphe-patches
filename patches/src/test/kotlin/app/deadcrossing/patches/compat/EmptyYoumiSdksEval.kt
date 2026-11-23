@@ -1,7 +1,9 @@
 package app.deadcrossing.patches.compat
 
+import app.deadcrossing.patches.mono.TELEMETRY_SDK_PREFIXES
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /**
  * What would have caught a patch that stubbed Youmi wrappers and left the SDK
@@ -25,5 +27,11 @@ class EmptyYoumiSdksEval {
             assertEquals(YOUMI_PREFIX, prefix, host)
         }
         assertEquals(3, byHost.size)
+    }
+
+    @Test
+    fun `Youmi is not part of the telemetry toggle`() {
+        assertTrue(TELEMETRY_SDK_PREFIXES.none { it.first.startsWith("Lnet/youmi/") })
+        assertTrue(TELEMETRY_SDK_PREFIXES.none { it.first == YOUMI_PREFIX })
     }
 }
